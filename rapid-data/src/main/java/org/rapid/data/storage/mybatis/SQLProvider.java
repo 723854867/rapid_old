@@ -130,7 +130,7 @@ public class SQLProvider {
 		}.toString();
 	}
 	
-	public String delete(Map<String, Object> params) {
+	public String deleteByKeys(Map<String, Object> params) {
 		Collection<?> keys = (Collection<?>) params.get(COLLECTION);
 		StringBuilder sql = new StringBuilder("DELETE FROM ");
 		sql.append(table).append("  WHERE ").append(keyCol).append(" IN(");
