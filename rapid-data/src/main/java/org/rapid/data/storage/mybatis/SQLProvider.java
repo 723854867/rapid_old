@@ -65,9 +65,13 @@ public class SQLProvider {
 	public String getByKeys(Map<String, Object> params) {
 		Collection<?> keys = (Collection<?>) params.get(COLLECTION);
 		StringBuilder sql = new StringBuilder("SELECT * FROM ");
-		sql.append(table).append("  WHERE ").append(keyCol).append(" IN(");
-		for (Object key : keys)
-			sql.append(key).append(",");
+		sql.append(table).append("  WHERE `").append(keyCol).append("` IN(");
+		for (Object key : keys) {
+			if (ClassUtil.isNumber(key))
+				sql.append(key).append(",");
+			else
+				sql.append("'").append(key).append("',");
+		}
 		sql.deleteCharAt(sql.length() - 1);
 		sql.append(")");
 		return sql.toString();
@@ -133,9 +137,13 @@ public class SQLProvider {
 	public String deleteByKeys(Map<String, Object> params) {
 		Collection<?> keys = (Collection<?>) params.get(COLLECTION);
 		StringBuilder sql = new StringBuilder("DELETE FROM ");
-		sql.append(table).append("  WHERE ").append(keyCol).append(" IN(");
-		for (Object key : keys)
-			sql.append(key).append(",");
+		sql.append(table).append("  WHERE `").append(keyCol).append("` IN(");
+		for (Object key : keys) {
+			if (ClassUtil.isNumber(key))
+				sql.append(key).append(",");
+			else
+				sql.append("'").append(key).append("',");
+		}
 		sql.deleteCharAt(sql.length() - 1);
 		sql.append(")");
 		return sql.toString();

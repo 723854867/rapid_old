@@ -23,7 +23,7 @@ public class Validator {
 	 * 正则表达式：车牌号
 	 */
 	private static final Pattern VEHICLE_LICENSE = Pattern.compile("^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$");
-
+	
 	private static final Pattern INTEGER = Pattern.compile("^[-\\+]?[\\d]*$");						// 整数
 	private static final Pattern POSITIVE_INTEGER = Pattern.compile("^[\\d]*$");					// 正整数
 	private static final Pattern NUMBER = Pattern.compile("-[0-9]+(.[0-9]+)?|[0-9]+(.[0-9]+)?");	// 数值
@@ -53,10 +53,10 @@ public class Validator {
 	 * @param license
 	 * @return
 	 */
-	public static boolean isVehicleLisense(String license) {
-		return _matches(VEHICLE_LICENSE, license);
+	public static boolean isVehicleLisense(String input) {
+		return _matches(VEHICLE_LICENSE, input);
 	}
-
+	
 	public static boolean isDigital(String str) {
 		return str == null || "".equals(str) ? false : str.matches("^[0-9]*$");
 	}
@@ -81,9 +81,6 @@ public class Validator {
 	 */
 	public static boolean isLetterDigitOrChinese(String input) {
 		return _matches(LETTER_DIGIT_CHINESE, input);
-	}
-	public static void main(String[] args) {
-		
 	}
 	
 	private static boolean _matches(Pattern pattern, CharSequence input) {

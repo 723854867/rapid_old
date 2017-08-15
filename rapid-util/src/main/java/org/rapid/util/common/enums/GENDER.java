@@ -21,4 +21,12 @@ public enum GENDER {
 	public int mark() {
 		return mark;
 	}
+	
+	public static final GENDER match(int value) {
+		for (GENDER gender : GENDER.values()) {
+			if (gender.mark == value)
+				return gender;
+		}
+		return null;
+	}
 }
