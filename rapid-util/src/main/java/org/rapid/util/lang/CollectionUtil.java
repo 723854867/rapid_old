@@ -19,6 +19,10 @@ public class CollectionUtil {
 		return new ArrayList<T>();
 	}
 	
+	public static final <K, V> Map<K, V> emptyHashMap() {
+		return new HashMap<K, V>();
+	}
+	
 	public static final List<Long> splitToLongList(String param, String regex) {
 		String[] arr = param.split(regex);
 		List<Long> list = new ArrayList<Long>(arr.length);

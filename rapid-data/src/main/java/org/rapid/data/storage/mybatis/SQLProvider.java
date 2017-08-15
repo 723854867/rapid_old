@@ -9,6 +9,7 @@ import java.util.Set;
 import org.apache.ibatis.jdbc.SQL;
 import org.rapid.util.lang.StringUtil;
 import org.rapid.util.reflect.BeanUtils;
+import org.rapid.util.reflect.ClassUtil;
 
 public class SQLProvider {
 	
@@ -93,6 +94,33 @@ public class SQLProvider {
 		return sql.toString();
 	}
 	
+	public String replace(Map<String, Object> params) {
+		Collection<?> models = (Collection<?>) params.get(COLLECTION);
+		StringBuilder sql = new StringBuilder("REPLACE INTO `");
+		sql.append(table).append("`(");
+		String[] cols = BeanUtils.beanToMap(models.iterator().next(), true).keySet().toArray(new String[]{});
+		for (int idx =0; idx < cols.length; idx++) {
+			sql.append("`").append(StringUtil.camel2Underline(cols[idx])).append("`,");
+		}
+		sql.deleteCharAt(sql.length() - 1);
+		sql.append(") VALUES");
+		for (Object entity : models) {
+			sql.append("(");
+			Map<String, Object> values = BeanUtils.beanToMap(entity, true);			// null 值也要包括进来，全属性更新
+			for (int idx =0; idx < cols.length; idx++) {
+				Object value = values.get(cols[idx]);
+				if (ClassUtil.isNumber(value)) 
+					sql.append(value.toString()).append(",");
+				else
+					sql.append("'").append(value.toString()).append("'").append(",");
+			}
+			sql.deleteCharAt(sql.length() - 1);
+			sql.append("),");
+		}
+		sql.deleteCharAt(sql.length() - 1);
+		return sql.toString();
+	}
+	
 	public String delete() {
 		return new SQL() {
 			{
@@ -100,6 +128,17 @@ public class SQLProvider {
 				WHERE("`" + keyCol + "`=#{key}");
 			}
 		}.toString();
+	}
+	
+	public String delete(Map<String, Object> params) {
+		Collection<?> keys = (Collection<?>) params.get(COLLECTION);
+		StringBuilder sql = new StringBuilder("DELETE FROM ");
+		sql.append(table).append("  WHERE ").append(keyCol).append(" IN(");
+		for (Object key : keys)
+			sql.append(key).append(",");
+		sql.deleteCharAt(sql.length() - 1);
+		sql.append(")");
+		return sql.toString();
 	}
 	
 	protected void addNoUpdateCol(String... cols) {

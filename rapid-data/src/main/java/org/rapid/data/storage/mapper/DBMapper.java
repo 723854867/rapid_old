@@ -1,5 +1,7 @@
 package org.rapid.data.storage.mapper;
 
+import java.util.Collection;
+
 import org.rapid.util.common.model.UniqueModel;
 
 /**
@@ -12,4 +14,7 @@ import org.rapid.util.common.model.UniqueModel;
  */
 public interface DBMapper<KEY, MODEL extends UniqueModel<KEY>> extends Mapper<KEY, MODEL> {
 
+	void delete(Collection<KEY> keys);
+	
+	void replace(Collection<MODEL> collection);
 }
