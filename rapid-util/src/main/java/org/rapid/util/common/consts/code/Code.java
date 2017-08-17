@@ -68,6 +68,12 @@ public enum Code implements ICode {
 	RANGE_OVERLAP(11, "range overlap"),
 	
 	/**
+	 * 不支持的 CrudType
+	 * 
+	 */
+	UNSUPPORTED_CRUD_TYPE(12, "unsupported crud type"),
+	
+	/**
 	 * 用户不存在
 	 */
 	USER_NOT_EXIST(20, "user not exist"),

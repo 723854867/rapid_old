@@ -24,4 +24,12 @@ public interface ValidateGroups {
 	 * @author ahab
 	 */
 	interface DELETE extends CRUD {}
+	
+	/**
+	 * 查询
+	 * 
+	 * @author ahab
+	 *
+	 */
+	interface RETRIEVE extends CRUD {}
 }

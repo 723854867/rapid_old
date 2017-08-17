@@ -1,6 +1,6 @@
 package org.rapid.util.common.enums;
 
-public enum CRUD_TYPE {
+public enum CrudType {
 
 	CREATE(1),
 	
@@ -12,7 +12,7 @@ public enum CRUD_TYPE {
 	
 	private int mark;
 	
-	private CRUD_TYPE(int mark) {
+	private CrudType(int mark) {
 		this.mark = mark;
 	}
 	
@@ -20,8 +20,8 @@ public enum CRUD_TYPE {
 		return mark;
 	}
 	
-	public static final CRUD_TYPE match(int type) { 
-		for (CRUD_TYPE temp : CRUD_TYPE.values()) {
+	public static final CrudType match(int type) { 
+		for (CrudType temp : CrudType.values()) {
 			if (temp.mark == type)
 				return temp;
 		}
