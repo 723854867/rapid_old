@@ -19,6 +19,14 @@ public class Validator {
 	 * 正则表达式：车牌号
 	 */
 	private static final Pattern VEHICLE_LICENSE = Pattern.compile("^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$");
+	/**
+	 * 车架号
+	 */
+	private static final Pattern VEHICLE_VIN = Pattern.compile("^[a-zA-Z0-9]{17}$");
+	/**
+	 * 发动机号简易验证
+	 */
+	private static final Pattern VEHICLE_ENGINE = Pattern.compile("^[a-zA-Z0-9]{4,}$");
 	
 	private static final Pattern INTEGER = Pattern.compile("^[-\\+]?[\\d]*$");						// 整数
 	private static final Pattern POSITIVE_INTEGER = Pattern.compile("^[\\d]*$");					// 正整数
@@ -51,6 +59,14 @@ public class Validator {
 	 */
 	public static boolean isVehicleLisense(String input) {
 		return _matches(VEHICLE_LICENSE, input);
+	}
+	
+	public static boolean isVehicleVin(String input) {
+		return _matches(VEHICLE_VIN, input);
+	}
+	
+	public static boolean isVehicleEngine(String input) {
+		return _matches(VEHICLE_ENGINE, input);
 	}
 	
 	public static boolean isDigital(String str) {

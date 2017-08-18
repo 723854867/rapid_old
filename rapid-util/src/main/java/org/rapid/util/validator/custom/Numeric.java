@@ -11,11 +11,11 @@ import javax.validation.Payload;
 
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = FutureTimestampValidator.class)
+@Constraint(validatedBy = NumericValidator.class)
 @Documented
-public @interface FutureTimestamp {
+public @interface Numeric {
 
-	String message() default "{org.btkj.futureTimestamp}";
+	String message() default "{org.btkj.numeric}";
 	
 	Class<?>[] groups() default {};
 	

@@ -131,7 +131,12 @@ public enum Code implements ICode {
 	/**
 	 * 排序字段不存在
 	 */
-	SORT_FIELD_NOT_EXIST(108, "sort field not exist!");
+	SORT_FIELD_NOT_EXIST(108, "sort field not exist!"),
+	
+	/**
+	 * 证件类型错误
+	 */
+	ERROR_ID_NO(517, "error id no");
 	
 	private int code;
 	private String desc;

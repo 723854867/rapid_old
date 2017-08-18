@@ -1,9 +1,7 @@
 package org.rapid.util.lang;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class NumberUtil {
@@ -32,15 +30,6 @@ public class NumberUtil {
 		Set<Integer> set = new HashSet<Integer>();
 		_splitIntoPowerOfTwo(set, cval, 0, val > 0);
 		return set;
-	}
-	
-	public static final List<Integer> splitIntoPowerOfTwoList(int val) {
-		int cval = val >= 0 ? val : ~(val - 0x01);
-		if (0 == cval)
-			return null;
-		List<Integer> list = new ArrayList<Integer>();
-		_splitIntoPowerOfTwo(list, cval, 0, val > 0);
-		return list;
 	}
 	
 	private static final void _splitIntoPowerOfTwo(Collection<Integer> set, int val, int depth, boolean positive) {

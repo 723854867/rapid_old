@@ -9,13 +9,18 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+/**
+ * 车牌
+ * 
+ * @author ahab
+ */
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = FutureTimestampValidator.class)
+@Constraint(validatedBy = CarLicenseValidator.class)
 @Documented
-public @interface FutureTimestamp {
+public @interface CarLicense {
 
-	String message() default "{org.btkj.futureTimestamp}";
+	String message() default "{org.btkj.car.license}";
 	
 	Class<?>[] groups() default {};
 	

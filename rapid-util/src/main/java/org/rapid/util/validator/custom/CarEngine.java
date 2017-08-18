@@ -11,11 +11,11 @@ import javax.validation.Payload;
 
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = FutureTimestampValidator.class)
+@Constraint(validatedBy = CarEngineValidator.class)
 @Documented
-public @interface FutureTimestamp {
+public @interface CarEngine {
 
-	String message() default "{org.btkj.futureTimestamp}";
+	String message() default "{org.btkj.car.engine}";
 	
 	Class<?>[] groups() default {};
 	
