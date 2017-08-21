@@ -1,6 +1,5 @@
 package org.rapid.util.math.tree;
 
-import java.util.List;
 import java.util.Map;
 
 public interface TreeFactory<ID, NODE extends Node<ID>, DOCUMENT extends Document<ID, NODE, DOCUMENT>> {
@@ -19,5 +18,5 @@ public interface TreeFactory<ID, NODE extends Node<ID>, DOCUMENT extends Documen
 	 * @param nodes
 	 * @return
 	 */
-	Map<ID, DOCUMENT> build(List<NODE> nodes);
+	Map<ID, DOCUMENT> build(Map<ID, NODE> nodes);
 }
