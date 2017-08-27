@@ -10,7 +10,7 @@ import java.io.Serializable;
 public interface Node<ID> extends Serializable {
 	
 	final int ROOT_LAYER				= 1;
-
+	
 	/**
 	 * 本节点的唯一ID(在一棵树种，该ID必须唯一)
 	 * 
@@ -18,6 +18,13 @@ public interface Node<ID> extends Serializable {
 	 */
 	ID getId();
 	
+	/**
+	 * 本节点名字
+	 * 
+	 * @return
+	 */
+	String getName();
+
 	/**
 	 * 该节点所在的层级
 	 * 

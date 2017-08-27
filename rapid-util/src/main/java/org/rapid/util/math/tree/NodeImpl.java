@@ -5,6 +5,7 @@ public class NodeImpl<ID> implements Node<ID> {
 	private static final long serialVersionUID = -2741265914116041003L;
 	
 	protected ID id;
+	protected String name;
 	protected int layer;
 	protected ID parentId;
 
@@ -15,6 +16,15 @@ public class NodeImpl<ID> implements Node<ID> {
 	
 	public void setId(ID id) {
 		this.id = id;
+	}
+	
+	@Override
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	@Override

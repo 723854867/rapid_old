@@ -15,4 +15,12 @@ public enum Protocol {
 	public String value() {
 		return value;
 	}
+	
+	public static final Protocol match(String protocol) { 
+		for (Protocol temp : Protocol.values()) {
+			if (temp.name().equalsIgnoreCase(protocol))
+				return temp;
+		}
+		return null;
+	}
 }

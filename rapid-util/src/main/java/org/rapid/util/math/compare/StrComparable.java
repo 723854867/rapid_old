@@ -5,7 +5,7 @@ public enum StrComparable implements Comparable<String> {
 	SINGLETON;
 
 	@Override
-	public boolean compare(ComparisonSymbol symbol, String src, String... targets) {
+	public boolean compare(Comparison symbol, String src, String... targets) {
 		int len = targets.length;
 		if (0 == len)
 			throw new IllegalArgumentException("Comparable targets error");

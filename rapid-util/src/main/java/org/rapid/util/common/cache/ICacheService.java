@@ -1,7 +1,9 @@
 package org.rapid.util.common.cache;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
+
+import org.rapid.util.common.model.UniqueModel;
 
 public interface ICacheService<CACHE extends ICache<?, ?>> {
 
@@ -11,11 +13,13 @@ public interface ICacheService<CACHE extends ICache<?, ?>> {
 	
 	CACHE getCache(String name);
 	
-	<ID, VALUE> VALUE getById(String name, ID id); 
+	<ID, VALUE extends UniqueModel<ID>> VALUE getById(String name, ID id);
 	
-	<ID, VALUE> List<VALUE> getAll(String name); 
+	<ID, VALUE extends UniqueModel<ID>> Map<ID, VALUE> getAll(String name); 
 	
-	<ID, VALUE> List<VALUE> getByProperties(String name, String property, Object value); 
+	<ID, VALUE extends UniqueModel<ID>> Map<ID, VALUE> getByIds(String name, Collection<ID> ids);
 	
-	<ID, VALUE> List<VALUE> getByProperties(String name, Map<String, Object> params);
+	<ID, VALUE extends UniqueModel<ID>> Map<ID, VALUE>getByProperties(String name, String property, Object value); 
+	
+	<ID, VALUE extends UniqueModel<ID>> Map<ID, VALUE> getByProperties(String name, Map<String, Object> params);
 }

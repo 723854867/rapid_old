@@ -9,5 +9,5 @@ public interface Comparable<TYPE> {
 	 * @param targets
 	 * @return
 	 */
-	boolean compare(ComparisonSymbol symbol, TYPE src, TYPE... targets);
+	boolean compare(Comparison symbol, TYPE src, TYPE... targets);
 }

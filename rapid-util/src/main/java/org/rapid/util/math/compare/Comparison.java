@@ -7,14 +7,14 @@ import org.rapid.util.validator.Validator;
  * 
  * @author ahab
  */
-public enum ComparisonSymbol {
+public enum Comparison {
 
 	/**
 	 * 大于
 	 */
 	gt(1) {
 		@Override
-		protected boolean checkOverlap(ComparisonSymbol symbol, String[] cval, String[] val) {
+		protected boolean checkOverlap(Comparison symbol, String[] cval, String[] val) {
 			switch (symbol) {
 			case eq:
 			case lt:
@@ -35,7 +35,7 @@ public enum ComparisonSymbol {
 	 */
 	gte(2) {
 		@Override
-		protected boolean checkOverlap(ComparisonSymbol symbol, String[] cval, String[] val) {
+		protected boolean checkOverlap(Comparison symbol, String[] cval, String[] val) {
 			switch (symbol) {
 			case lt:
 				return Integer.valueOf(cval[0]) <= Integer.valueOf(val[0]);
@@ -53,9 +53,9 @@ public enum ComparisonSymbol {
 		}
 	},
 	
-	lt(3) {
+	lt(4) {
 		@Override
-		protected boolean checkOverlap(ComparisonSymbol symbol, String[] cval, String[] val) {
+		protected boolean checkOverlap(Comparison symbol, String[] cval, String[] val) {
 			switch (symbol) {
 			case eq:
 			case bteween:
@@ -70,9 +70,9 @@ public enum ComparisonSymbol {
 		}
 	},
 	
-	lte(4) {
+	lte(8) {
 		@Override
-		protected boolean checkOverlap(ComparisonSymbol symbol, String[] cval, String[] val) {
+		protected boolean checkOverlap(Comparison symbol, String[] cval, String[] val) {
 			switch (symbol) {
 			case eq:
 			case lbteween:
@@ -88,9 +88,9 @@ public enum ComparisonSymbol {
 		}
 	},
 	
-	eq(5) {
+	eq(16) {
 		@Override
-		protected boolean checkOverlap(ComparisonSymbol symbol, String[] cval, String[] val) {
+		protected boolean checkOverlap(Comparison symbol, String[] cval, String[] val) {
 			if (Validator.isNumber(val[0])) {
 				switch (symbol) {
 				case gt:
@@ -126,9 +126,9 @@ public enum ComparisonSymbol {
 		}
 	},
 	
-	bteween(7) {
+	bteween(32) {
 		@Override
-		protected boolean checkOverlap(ComparisonSymbol symbol, String[] cval, String[] val) {
+		protected boolean checkOverlap(Comparison symbol, String[] cval, String[] val) {
 			switch (symbol) {
 			case gt:
 			case gte:
@@ -150,9 +150,9 @@ public enum ComparisonSymbol {
 		}
 	},
 	
-	lbteween(8) {
+	lbteween(64) {
 		@Override
-		protected boolean checkOverlap(ComparisonSymbol symbol, String[] cval, String[] val) {
+		protected boolean checkOverlap(Comparison symbol, String[] cval, String[] val) {
 			switch (symbol) {
 			case gt:
 			case gte:
@@ -177,9 +177,9 @@ public enum ComparisonSymbol {
 		}
 	},
 	
-	rbteween(9) {
+	rbteween(128) {
 		@Override
-		protected boolean checkOverlap(ComparisonSymbol symbol, String[] cval, String[] val) {
+		protected boolean checkOverlap(Comparison symbol, String[] cval, String[] val) {
 			switch (symbol) {
 			case gt:
 				return Integer.valueOf(cval[0]) >= Integer.valueOf(val[1]);
@@ -206,7 +206,7 @@ public enum ComparisonSymbol {
 	
 	private int mark;
 	
-	private ComparisonSymbol(int mark) {
+	private Comparison(int mark) {
 		this.mark = mark;
 	}
 	
@@ -220,9 +220,9 @@ public enum ComparisonSymbol {
 		return Integer.valueOf(value[0]) < Integer.valueOf(value[1]);
 	}
 	
-	public boolean isOverlap(ComparisonSymbol symbol, String[] cval, String[] val) {
+	public boolean isOverlap(Comparison symbol, String[] cval, String[] val) {
 		try {
-			if (symbol == ComparisonSymbol.bteween || symbol == ComparisonSymbol.lbteween || symbol == ComparisonSymbol.rbteween) {
+			if (symbol == Comparison.bteween || symbol == Comparison.lbteween || symbol == Comparison.rbteween) {
 				if (cval.length != 2 || (Integer.valueOf(cval[0]) >= Integer.valueOf(cval[1])))
 					return true;
 			} else if (cval.length != 1)
@@ -233,10 +233,10 @@ public enum ComparisonSymbol {
 		}
 	}
 	
-	protected abstract boolean checkOverlap(ComparisonSymbol symbol, String[] cval, String[] val);
+	protected abstract boolean checkOverlap(Comparison symbol, String[] cval, String[] val);
 	
-	public static final ComparisonSymbol match(int mark) {
-		for (ComparisonSymbol symbol : ComparisonSymbol.values()) {
+	public static final Comparison match(int mark) {
+		for (Comparison symbol : Comparison.values()) {
 			if (symbol.mark != mark)
 				continue;
 			return symbol;

@@ -1,13 +1,13 @@
 package org.rapid.util.common.cache;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.rapid.util.common.model.UniqueModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings("unchecked")
 public class CacheService<CACHE extends ICache<?, ?>> implements ICacheService<CACHE> {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CacheService.class);
@@ -42,30 +42,36 @@ public class CacheService<CACHE extends ICache<?, ?>> implements ICacheService<C
 	}
 
 	@Override
-	public <ID, VALUE> VALUE getById(String name, ID id) {
+	public <ID, VALUE extends UniqueModel<ID>> VALUE getById(String name, ID id) {
 		ICache<ID, VALUE> cache = _getCache(name);
 		return cache.getById(id);
 	}
-
+	
 	@Override
-	public <ID, VALUE> List<VALUE> getAll(String name) {
+	public <ID, VALUE extends UniqueModel<ID>> Map<ID, VALUE> getAll(String name) {
 		ICache<ID, VALUE> cache = _getCache(name);
 		return cache.getAll();
 	}
+	
+	@Override
+	public <ID, VALUE extends UniqueModel<ID>> Map<ID, VALUE> getByIds(String name, Collection<ID> ids) {
+		ICache<ID, VALUE> cache = _getCache(name);
+		return cache.getByIds(ids);
+	}
 
 	@Override
-	public <ID, VALUE> List<VALUE> getByProperties(String name, String property, Object value) {
+	public <ID, VALUE extends UniqueModel<ID>> Map<ID, VALUE>getByProperties(String name, String property, Object value) {
 		ICache<ID, VALUE> cache = _getCache(name);
 		return cache.getByProperties(property, value);
 	}
 
 	@Override
-	public <ID, VALUE> List<VALUE> getByProperties(String name, Map<String, Object> params) {
+	public <ID, VALUE extends UniqueModel<ID>> Map<ID, VALUE> getByProperties(String name, Map<String, Object> params) {
 		ICache<ID, VALUE> cache = _getCache(name);
 		return cache.getByProperties(params);
 	}
 
-	private <ID, VALUE> ICache<ID, VALUE> _getCache(String name) {
+	private <ID, VALUE extends UniqueModel<ID>> ICache<ID, VALUE> _getCache(String name) {
 		return (ICache<ID, VALUE>) caches.get(name);
 	}
 	

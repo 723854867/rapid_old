@@ -5,7 +5,7 @@ public enum IntComparable implements Comparable<Integer> {
 	SINGLETON;
 	
 	@Override
-	public boolean compare(ComparisonSymbol symbol, Integer src, Integer... targets) {
+	public boolean compare(Comparison symbol, Integer src, Integer... targets) {
 		int len = targets.length;
 		if (0 == len)
 			throw new IllegalArgumentException("Comparable targets error");
@@ -27,9 +27,9 @@ public enum IntComparable implements Comparable<Integer> {
 				throw new IllegalArgumentException("Comparable targets error");
 			int max = Math.max(targets[0], targets[1]);
 			int min = Math.min(targets[0], targets[1]);
-			if (symbol == ComparisonSymbol.bteween)
+			if (symbol == Comparison.bteween)
 				return (src > min && src < max);
-			else if (symbol == ComparisonSymbol.lbteween) 
+			else if (symbol == Comparison.lbteween) 
 				return (src >= min && src < max);
 			else
 				return (src > min && src <= max);
