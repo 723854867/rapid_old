@@ -47,6 +47,18 @@ public class Mongo {
 		collection.insertMany(list);
 	}
 	
+	public <KEY, T extends UniqueModel<KEY>> Map<KEY, T> findMap(String collectionName, Class<T> clazz) { 
+		MongoCollection<Document> collection = connection.getCollection(collectionName);
+		FindIterable<Document> iterable = collection.find();
+		Map<KEY, T> map = new HashMap<KEY, T>();
+		MongoCursor<Document> cursor = iterable.iterator();
+		while (cursor.hasNext()) {
+			T t = SerializeUtil.JsonUtil.GSON.fromJson(cursor.next().toJson(), clazz);
+			map.put(t.key(), t);
+		}
+		return map;
+	}
+	
 	public <T> List<T> find(String collectionName, Class<T> clazz) { 
 		MongoCollection<Document> collection = connection.getCollection(collectionName);
 		FindIterable<Document> iterable = collection.find();

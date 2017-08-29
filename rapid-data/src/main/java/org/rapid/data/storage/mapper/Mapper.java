@@ -1,8 +1,6 @@
 package org.rapid.data.storage.mapper;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.rapid.util.common.model.UniqueModel;
@@ -58,28 +56,4 @@ public interface Mapper<KEY, MODEL extends UniqueModel<KEY>>  {
 	 * @param key
 	 */
 	void delete(KEY key);
-	
-	/**
-	 * 将一个 list 转换为 map
-	 * 
-	 * @param list
-	 * @return
-	 */
-	default Map<KEY, MODEL> convertToMap(List<MODEL> list) {
-		Map<KEY, MODEL> map = new HashMap<KEY, MODEL>(list.size());
-		for (MODEL model : list)
-			map.put(model.key(), model);
-		return map;
-	}
-	
-	/**
-	 * 将 list 中数据载入 map 中
-	 * 
-	 * @param map
-	 * @param list
-	 */
-	default void loadInToMap(Map<KEY, MODEL> map, List<MODEL> list) {
-		for (MODEL model : list)
-			map.put(model.key(), model);
-	}
 }

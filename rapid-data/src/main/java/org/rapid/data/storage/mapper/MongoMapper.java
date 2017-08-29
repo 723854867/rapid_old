@@ -3,7 +3,6 @@ package org.rapid.data.storage.mapper;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,7 +10,6 @@ import javax.annotation.Resource;
 import org.rapid.data.storage.mongo.Mongo;
 import org.rapid.data.storage.mongo.MongoUtil;
 import org.rapid.util.common.model.UniqueModel;
-import org.rapid.util.lang.CollectionUtil;
 
 import com.mongodb.client.model.Filters;
 
@@ -47,7 +45,7 @@ public class MongoMapper<KEY, MODEL extends UniqueModel<KEY>> implements Mapper<
 	
 	@Override
 	public Map<KEY, MODEL> getAll() {
-		return convertToMap(mongo.find(collection, clazz));
+		return mongo.findMap(collection, clazz);
 	}
 
 	@Override
@@ -57,10 +55,7 @@ public class MongoMapper<KEY, MODEL extends UniqueModel<KEY>> implements Mapper<
 
 	@Override
 	public Map<KEY, MODEL> getByKeys(Collection<KEY> keys) {
-		Map<KEY, MODEL> map = new HashMap<KEY, MODEL>();
-		if (!CollectionUtil.isEmpty(keys)) 
-			loadInToMap(map, mongo.find(collection, MongoUtil.or(FIELD_ID, keys), clazz));
-		return map;
+		return mongo.findMap(collection, MongoUtil.or(FIELD_ID, keys), clazz);
 	}
 	
 	@Override
