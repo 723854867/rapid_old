@@ -37,6 +37,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtostuffIOUtil;
@@ -49,6 +50,7 @@ public interface SerializeUtil {
 
 	class JsonUtil {
 		public static final Gson GSON = new Gson();
+		public static final Gson EXPOSE_GSON = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create(); 
 	}
 
 	class XmlUtil {

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * 节点文档：Node 本身只是记录自己的数据，而每一个 docuement 不仅有本节点的 Node，还有所有其子节点的 Node
  * 
@@ -13,8 +15,10 @@ public abstract class Document<ID, NODE extends Node<ID>, NOCUMENT extends Docum
 	
 	private static final long serialVersionUID = 2463356307842730468L;
 	
+	@Expose
 	protected NODE node;
 	protected NOCUMENT parent;
+	@Expose
 	protected Map<ID, NOCUMENT> children;
 	
 	protected Document(NODE node) {

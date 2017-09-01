@@ -1,10 +1,14 @@
 package org.rapid.util.math.tree;
 
+import com.google.gson.annotations.Expose;
+
 public class NodeImpl<ID> implements Node<ID> {
 
 	private static final long serialVersionUID = -2741265914116041003L;
 	
+	@Expose
 	protected ID id;
+	@Expose
 	protected String name;
 	protected int layer;
 	protected ID parentId;

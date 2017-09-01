@@ -5,6 +5,8 @@ import org.rapid.util.common.consts.code.ICode;
 import org.rapid.util.common.message.IMessage.Message;
 import org.rapid.util.common.serializer.SerializeUtil;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * 可以表示任何调用过程的返回结果(rpc调用、web调用、甚至是方法调用都可以)
  * 
@@ -16,7 +18,9 @@ public class Result<T> extends Message<T> {
 
 	private static final long serialVersionUID = 4231387477200661362L;
 	
+	@Expose
 	private int code;
+	@Expose
 	private String desc;
 	
 	public int getCode() {

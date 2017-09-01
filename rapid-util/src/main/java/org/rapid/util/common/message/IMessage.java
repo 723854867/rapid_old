@@ -2,6 +2,8 @@ package org.rapid.util.common.message;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * 所有交互的中间消息接口
  * 
@@ -42,8 +44,11 @@ public interface IMessage<T> extends Serializable {
 
 		private static final long serialVersionUID = -1888861088157369308L;
 		
+		@Expose
 		private T attach;
+		@Expose
 		private long createTime;
+		@Expose
 		private int messageType;
 		
 		public Message() {
