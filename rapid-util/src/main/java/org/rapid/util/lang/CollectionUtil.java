@@ -38,6 +38,13 @@ public class CollectionUtil {
 		return arr;
 	}
 	
+	public static final BigDecimal[] toBigDecimalArray(String ...params) { 
+		BigDecimal[] arr = new BigDecimal[params.length];
+		for (int i = 0, len = params.length; i < len; i++)
+			arr[i] = new BigDecimal(params[i]);
+		return arr;
+	}
+	
 	public static final List<BigDecimal> toDecimalList(String ...params) { 
 		List<BigDecimal> decimals = new ArrayList<BigDecimal>();
 		for (int i = 0, len = params.length; i < len; i++)
