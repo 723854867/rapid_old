@@ -2,6 +2,7 @@ package org.rapid.data.storage.mapper;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,7 @@ public abstract class RedisDBAdapter<KEY, ENTITY extends UniqueModel<KEY>, DAO e
 	
 	@Override
 	public Map<KEY, ENTITY> getByKeys(Collection<KEY> keys) {
+		keys = new HashSet<KEY>(keys);
 		Map<KEY, ENTITY> entities = new HashMap<KEY, ENTITY>();
 		if (CollectionUtil.isEmpty(keys))
 			return entities;
