@@ -73,6 +73,8 @@ public enum Code implements ICode {
 	 */
 	UNSUPPORTED_CRUD_TYPE(12, "unsupported crud type"),
 	
+	REQUEST_FREQUENTLY(13, "请求太频繁"),
+	
 	/**
 	 * 用户不存在
 	 */
