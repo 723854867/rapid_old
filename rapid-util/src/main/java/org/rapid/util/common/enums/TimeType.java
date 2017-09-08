@@ -5,7 +5,7 @@ package org.rapid.util.common.enums;
  * 
  * @author ahab
  */
-public enum TIME_TYPE {
+public enum TimeType {
 
 	YEAR(1),
 	
@@ -29,7 +29,7 @@ public enum TIME_TYPE {
 	
 	private int mark;
 	
-	private TIME_TYPE(int mark) {
+	private TimeType(int mark) {
 		this.mark = mark;
 	}
 	
@@ -37,8 +37,8 @@ public enum TIME_TYPE {
 		return mark;
 	}
 	
-	public static final TIME_TYPE match(int mark) {
-		for (TIME_TYPE type : TIME_TYPE.values()) {
+	public static final TimeType match(int mark) {
+		for (TimeType type : TimeType.values()) {
 			if (type.mark == mark)
 				return type;
 		}

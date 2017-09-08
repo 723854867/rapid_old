@@ -1,6 +1,6 @@
 package org.rapid.util.common.enums;
 
-public enum SORT_TYPE {
+public enum SortType {
 
 	/**
 	 * 升序
