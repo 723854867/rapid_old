@@ -31,6 +31,7 @@ public interface Consts {
 		Result OK 								= Result.result(Code.OK);
 		Result FORBID							= Result.result(Code.FORBID);
 		Result FAILURE							= Result.result(Code.FAILURE);
+		Result BAD_REQUEST						= Result.result(Code.BAD_REQUEST);
 		Result ERROR_ID_NO						= Result.result(Code.ERROR_ID_NO);
 		Result NO_PRIVILEGE						= Result.result(Code.NO_PRIVILEGE);
 		Result TOKEN_INVALID					= Result.result(Code.TOKEN_INVALID);

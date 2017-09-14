@@ -1,7 +1,7 @@
 package org.rapid.aliyun;
 
-import org.rapid.util.common.consts.conveter.Str2LongConstConverter;
-import org.rapid.util.common.consts.conveter.Str2StrConstConverter;
+import org.rapid.util.common.consts.conveter.str.Str2LongConstConverter;
+import org.rapid.util.common.consts.conveter.str.Str2StrConstConverter;
 
 public interface AliyunOptions {
 	

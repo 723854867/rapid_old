@@ -1,4 +1,4 @@
-package org.rapid.util.common.consts.conveter;
+package org.rapid.util.common.consts.conveter.str;
 
 import org.rapid.util.common.consts.BoolConst;
 import org.rapid.util.exception.ConstConvertFailureException;

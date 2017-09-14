@@ -75,6 +75,8 @@ public enum Code implements ICode {
 	
 	REQUEST_FREQUENTLY(13, "请求太频繁"),
 	
+	BAD_REQUEST(14, "请求格式错误"),
+	
 	/**
 	 * 用户不存在
 	 */

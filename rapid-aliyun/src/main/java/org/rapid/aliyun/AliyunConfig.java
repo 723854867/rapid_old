@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.rapid.util.common.consts.conveter.StrConstConverter;
+import org.rapid.util.common.consts.conveter.str.StrConstConverter;
 import org.rapid.util.exception.ConstConvertFailureException;
 import org.rapid.util.io.ResourceUtil;
 import org.rapid.util.lang.StringUtil;
