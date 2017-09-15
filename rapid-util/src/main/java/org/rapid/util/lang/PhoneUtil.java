@@ -2,6 +2,8 @@ package org.rapid.util.lang;
 
 import java.util.Locale;
 
+import org.rapid.util.common.Consts;
+
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
@@ -57,5 +59,9 @@ public class PhoneUtil {
 			return false;
 		}
 		return util.isValidNumber(number);
+	}
+	
+	public static String entirelyMobile(String mobile) {
+		return Consts.SYMBOL_PLUS + getCountryCode(mobile) + getNationalNumber(mobile);
 	}
 }
