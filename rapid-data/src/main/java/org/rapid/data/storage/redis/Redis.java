@@ -326,6 +326,10 @@ public class Redis {
 		return invokeLua(LuaCmd.HPAGING, setKey, hashKey, page, pageSize, option);
 	}
 	
+	public boolean hputJsonIfExpire(Object key, Object field, Object value, int expires) { 
+		return 1 == (long) invokeLua(LuaCmd.HPUT_JSON_IF_EXPIRE, key, field, value, expires);
+	}
+	
 	public byte[] hzgetDel(Object hashKey, Object field, Object... zsetKeys) { 
 		Object[] params = new Object[zsetKeys.length + 2];
 		int index = 0;

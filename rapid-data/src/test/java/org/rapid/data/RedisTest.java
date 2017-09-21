@@ -9,6 +9,7 @@ import java.util.Map;
 import org.rapid.data.storage.redis.ILuaCmd;
 import org.rapid.data.storage.redis.Redis;
 import org.rapid.util.common.serializer.SerializeUtil;
+import org.rapid.util.common.serializer.impl.ByteJsonSerializer;
 import org.rapid.util.common.serializer.impl.ByteProtostuffSerializer;
 import org.rapid.util.lang.DateUtil;
 
@@ -126,5 +127,23 @@ public class RedisTest extends BaseTest {
 		list.add(2);
 		List<byte[]> data = redis.hmget("ssss", list);
 		System.out.println(data);
+	}
+	
+	public void testHputJsonIfNotExpire() {
+		int time = DateUtil.currentTime();
+		Mem mem = new Mem();
+		mem.setAge(100);
+		mem.setName("张三");
+		mem.setId(1);
+		mem.setCreated(time);
+		
+		Mem mem1 = new Mem();
+		mem1.setAge(50);
+		mem1.setName("李四");
+		mem1.setId(5);
+		mem1.setCreated(time + 60);
+		
+		System.out.println(redis.hputJsonIfExpire("hputjsonifexpire", "test", new ByteJsonSerializer<Mem>().convert(mem), 300));
+		System.out.println(redis.hputJsonIfExpire("hputjsonifexpire", "test", new ByteJsonSerializer<Mem>().convert(mem1), 60));
 	}
 }

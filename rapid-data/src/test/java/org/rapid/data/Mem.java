@@ -9,6 +9,7 @@ public class Mem implements UniqueModel<Integer> {
 	private int id;
 	private String name;
 	private int age;
+	private int created;
 
 	public int getId() {
 		return id;
@@ -32,6 +33,14 @@ public class Mem implements UniqueModel<Integer> {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+	
+	public int getCreated() {
+		return created;
+	}
+	
+	public void setCreated(int created) {
+		this.created = created;
 	}
 
 	@Override

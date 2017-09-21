@@ -82,6 +82,13 @@ public interface ILuaCmd {
 			}
 		},
 		
+		HPUT_JSON_IF_EXPIRE {
+			@Override
+			public int keyNum() {
+				return 1;
+			}
+		},
+		
 		HMSDEL {
 			@Override
 			public int keyNum() {

@@ -190,4 +190,12 @@ public class StringUtil {
         }
         return builder.toString();
     }
+	
+	public static final String underlineLink(Object... params) { 
+		StringBuilder builder = new StringBuilder();
+		for (Object object : params)
+			builder.append(object.toString()).append(Consts.SYMBOL_UNDERLINE);
+		builder.deleteCharAt(builder.length() - 1);
+		return builder.toString();
+	}
 }

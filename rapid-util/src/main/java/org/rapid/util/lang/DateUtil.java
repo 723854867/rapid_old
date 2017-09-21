@@ -38,6 +38,11 @@ public final class DateUtil {
 	 */
 	public static final int MILLIS_FIVE_MINUTES	= 60 * 1000;
 	
+	/**
+	 * 半年的秒数
+	 */
+	public static final int SECONDS_HALF_YEAR	= 180 * 24 * 3600;
+	
 	public static int currentTime() {
 		return (int) (System.currentTimeMillis() / 1000);
 	}
@@ -138,16 +143,16 @@ public final class DateUtil {
 		return calendar.get(Calendar.MONTH);
 	}
 	
-	public static int weekOfYear(TimeZone timeZone, Locale locale, long time) {
+	public static int weekOfMonth(TimeZone timeZone, Locale locale, long time) {
 		GregorianCalendar calendar = new GregorianCalendar(timeZone, locale);
 		calendar.setTime(new Date(time));
-		return calendar.get(Calendar.WEEK_OF_YEAR);
+		return calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH);
 	}
 	
-	public static int dayOfYear(TimeZone timeZone, Locale locale, long time) {
+	public static int dayOfMonth(TimeZone timeZone, Locale locale, long time) {
 		GregorianCalendar calendar = new GregorianCalendar(timeZone, locale);
 		calendar.setTime(new Date(time));
-		return calendar.get(Calendar.DAY_OF_YEAR);
+		return calendar.get(Calendar.DAY_OF_MONTH);
 	}
 	
 	public static int season(TimeZone timeZone, Locale locale, long time) {
