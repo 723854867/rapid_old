@@ -34,14 +34,10 @@ public class SQLProvider {
 		Map<String, Object> params = BeanUtils.beanToMap(entity, false);
 		SQL sql = new SQL();
 		sql.INSERT_INTO(table);
-		a : for (Entry<String, Object> entry : params.entrySet()) {
+		for (Entry<String, Object> entry : params.entrySet()) {
 			String col = StringUtil.camel2Underline(entry.getKey());
 			if (useGeneratedKeys && keyCol.equals(col))					// 如果主键是自动生成的则要忽略主键
 				continue;
-			for (String ncol : updateExclusive) {
-				if (col.equals(ncol))
-					continue a;
-			}
 			sql.VALUES("`" + col + "`", "#{" + entry.getKey() + "}");
 		}
 		return sql.toString();
